@@ -380,11 +380,9 @@ module M
 			& p9=1 -> (s'=2);
 	
 	//final case
-	[] s=2 -> s'=2;
+	[end] s=2 -> (s'= 2);
 			
 endmodule
-
-label "end" = s=2;
 
 rewards
 	[end] p1=0 : 1;
@@ -396,9 +394,10 @@ rewards
 	[end] p7=0 : 7;
 	[end] p8=0 : 8;
 	[end] p9=0 : 9;
-	
+endrewards
+
 // P.S In order to verify the combinations I found code that I can
 // link the source of due to plagiarism policy 
-//( I can also write a new one, but it basically check for all unique combiantions from a set of numbers for a given sum). Was thinking of writing it but decided 
+//( I can also write a new one, but it basically check for all unique combiantions from a set of numbers for a given sum). Was thinking of writing 
+//it but decided 
 //to check if there is something so as to not waste time.
-
