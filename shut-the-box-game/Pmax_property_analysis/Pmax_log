@@ -1,0 +1,313 @@
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [592.8 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.00)
+
+Value in the initial state: 0.16489897285409302
+
+Time for model checking: 0.02 seconds.
+
+Result: 0.16489897285409302 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=3
+
+Prob0A: 10 iterations in 0.01 seconds (average 0.000700, setup 0.00)
+
+Prob1E: 17 iterations in 0.01 seconds (average 0.000529, setup 0.00)
+
+yes = 250, no = 1964, maybe = 4381
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6314] [296.0 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [127.6 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [591.0 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.00)
+
+Value in the initial state: 0.198619465052068
+
+Time for model checking: 0.023 seconds.
+
+Result: 0.198619465052068 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=4
+
+Prob0A: 10 iterations in 0.01 seconds (average 0.000500, setup 0.00)
+
+Prob1E: 17 iterations in 0.01 seconds (average 0.000412, setup 0.00)
+
+yes = 282, no = 1954, maybe = 4359
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6301] [295.4 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [127.4 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [590.2 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.00)
+
+Value in the initial state: 0.20836093998268582
+
+Time for model checking: 0.019 seconds.
+
+Result: 0.20836093998268582 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=5
+
+Prob0A: 10 iterations in 0.01 seconds (average 0.000800, setup 0.00)
+
+Prob1E: 21 iterations in 0.01 seconds (average 0.000619, setup 0.00)
+
+yes = 382, no = 1932, maybe = 4281
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6387] [299.4 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [126.8 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [593.7 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.00)
+
+Value in the initial state: 0.2440867827361454
+
+Time for model checking: 0.028 seconds.
+
+Result: 0.2440867827361454 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=6
+
+Prob0A: 10 iterations in 0.01 seconds (average 0.001500, setup 0.00)
+
+Prob1E: 17 iterations in 0.01 seconds (average 0.000529, setup 0.00)
+
+yes = 476, no = 1903, maybe = 4216
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6551] [307.1 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [126.4 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [600.9 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.01)
+
+Value in the initial state: 0.27707435272838304
+
+Time for model checking: 0.028 seconds.
+
+Result: 0.27707435272838304 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=7
+
+Prob0A: 9 iterations in 0.01 seconds (average 0.001111, setup 0.00)
+
+Prob1E: 17 iterations in 0.01 seconds (average 0.000588, setup 0.00)
+
+yes = 601, no = 1872, maybe = 4122
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6703] [314.2 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [125.7 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [607.4 KB]
+
+Starting iterations...
+
+Iterative method: 18 iterations in 0.01 seconds (average 0.000222, setup 0.00)
+
+Value in the initial state: 0.31987790747428535
+
+Time for model checking: 0.028 seconds.
+
+Result: 0.31987790747428535 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=8
+
+Prob0A: 9 iterations in 0.01 seconds (average 0.000667, setup 0.00)
+
+Prob1E: 17 iterations in 0.01 seconds (average 0.000765, setup 0.00)
+
+yes = 822, no = 1813, maybe = 3960
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6916] [324.2 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [124.6 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [616.2 KB]
+
+Starting iterations...
+
+Iterative method: 16 iterations in 0.01 seconds (average 0.000562, setup 0.01)
+
+Value in the initial state: 0.3959191395953865
+
+Time for model checking: 0.031 seconds.
+
+Result: 0.3959191395953865 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=9
+
+Prob0A: 8 iterations in 0.02 seconds (average 0.002125, setup 0.00)
+
+Prob1E: 16 iterations in 0.03 seconds (average 0.001875, setup 0.00)
+
+yes = 1044, no = 1751, maybe = 3800
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=7018] [329.0 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [123.3 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [619.8 KB]
+
+Starting iterations...
+
+Iterative method: 16 iterations in 0.02 seconds (average 0.000500, setup 0.01)
+
+Value in the initial state: 0.4508648704874459
+
+Time for model checking: 0.035 seconds.
+
+Result: 0.4508648704874459 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=10
+
+Prob0A: 8 iterations in 0.02 seconds (average 0.002125, setup 0.00)
+
+Prob1E: 19 iterations in 0.03 seconds (average 0.001421, setup 0.00)
+
+yes = 1257, no = 1694, maybe = 3644
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6767] [317.2 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [121.8 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [606.5 KB]
+
+Starting iterations...
+
+Iterative method: 16 iterations in 0.02 seconds (average 0.000500, setup 0.01)
+
+Value in the initial state: 0.49887935235431824
+
+Time for model checking: 0.034 seconds.
+
+Result: 0.49887935235431824 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=11
+
+Prob0A: 8 iterations in 0.04 seconds (average 0.005000, setup 0.00)
+
+Prob1E: 19 iterations in 0.03 seconds (average 0.001421, setup 0.00)
+
+yes = 1466, no = 1630, maybe = 3499
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6763] [317.0 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [120.5 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [605.0 KB]
+
+Starting iterations...
+
+Iterative method: 16 iterations in 0.01 seconds (average 0.000250, setup 0.01)
+
+Value in the initial state: 0.5456868142894252
+
+Time for model checking: 0.043 seconds.
+
+Result: 0.5456868142894252 (exact floating point)
+
+---------------------------------------------------------------------
+
+Model checking: Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)<=k ]
+Property constants: k=12
+
+Prob0A: 8 iterations in 0.01 seconds (average 0.001125, setup 0.00)
+
+Prob1E: 19 iterations in 0.01 seconds (average 0.000632, setup 0.00)
+
+yes = 1633, no = 1581, maybe = 3381
+
+Computing remaining probabilities...
+Engine: Hybrid
+
+Building hybrid MTBDD matrices... [nm=12, levels=15, nodes=6755] [316.6 KB]
+Adding sparse bits... [levels=15-15, num=12, compact=12/12] [119.5 KB]
+Creating vector for yes... [dist=2, compact] [12.9 KB]
+Allocating iteration vectors... [3 x 51.5 KB]
+TOTAL: [603.6 KB]
+
+Starting iterations...
+
+Iterative method: 16 iterations in 0.01 seconds (average 0.000250, setup 0.01)
+
+Value in the initial state: 0.5800240551321096
+
+Time for model checking: 0.026 seconds.
+
+Result: 0.5800240551321096 (exact floating point)
