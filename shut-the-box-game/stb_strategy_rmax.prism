@@ -1,0 +1,398 @@
+// This model is the strategy of Shut the box where
+// if 7, 8, 9 boxes are closed throw only a die
+// and until 7,8,9 boxes are closed throw 2 dice
+
+// Model for Shut the Box game
+
+dtmc
+
+module M
+
+    // local states 3:
+    // before throwing the dice
+    // after throwing the dice
+    // ending the game
+
+    s : [0..2] init 0;
+
+    //TODO: implement dice value ->
+    //possibly, throwing the die 
+    //: action
+    
+    sum : [0..12] init 0;
+
+    // definition of box pieces:
+    // 0 - not-closed
+    // 1 - closed
+    p1 : [0..1] init 0;
+    p2 : [0..1] init 0;
+    p3 : [0..1] init 0;
+    p4 : [0..1] init 0;
+    p5 : [0..1] init 0;
+    p6 : [0..1] init 0;
+    p7 : [0..1] init 0;
+    p8 : [0..1] init 0;
+    p9 : [0..1] init 0;
+
+	// throw single die when 7, 8 and 9 are covered
+	[one] s=0 & p7=1 & p8=1 & p9=1 -> 1/6 : (s'=1) & (sum'=1)
+						+ 1/6 : (s'=1) & (sum'=2)
+						+ 1/6 : (s'=1) & (sum'=3)
+						+ 1/6 : (s'=1) & (sum'=4)
+						+ 1/6 : (s'=1) & (sum'=5)
+						+ 1/6 : (s'=1) & (sum'=6);
+	// throw two dice until boxes 7, 8 and 9 are covered 
+	[two] s=0 & (p7=0 || p8=0 || p9=0)-> 1/36 : (s'=1) & (sum'=2) // 1 and 1
+						+ 2/36 : (s'=1) & (sum'=3) // 1 and 2 or 2 and 1
+						+ 3/36 : (s'=1) & (sum'=4) // 1 and 3 or 3 and 1 or 2 and 2
+						+ 4/36 : (s'=1) & (sum'=5) // 1 and 4 or 4 and 1 or 2 and 3 or 3 and 2
+						+ 5/36 : (s'=1) & (sum'=6) // 1 and 5 or 2 and 4 or 3 and 3 or 4 and 2 or 5 and 1
+						+ 6/36 : (s'=1) & (sum'=7) // 1 and 6 or 2 and 5 or 3 and 4 or 4 and 3 or 5 and 2 or 6 and 1
+						+ 5/36 : (s'=1) & (sum'=8) // 2 and 6 or 3 and 5 or 4 and 4 or 5 and 3 or 6 and 2 
+						+ 4/36 : (s'=1) & (sum'=9) // 3 and 6 or 4 and 5 or 5 and 4 or 6 and 3 
+						+ 3/36 : (s'=1) & (sum'=10) // 4 and 6 or 5 and 5 or 6 and 4
+						+ 2/36 : (s'=1) & (sum'=11) //  5 and 6 or 6 and 5
+						+ 1/36 : (s'=1) & (sum'=12); // 6 and 6
+
+														    
+	// decide what to cover
+	// sum = 1
+	[c1] s=1 & sum=1 & p1=0 -> (s'=0) & (p1'=1) & (sum'=0);
+	
+	//sum = 2
+	[c2] s=1 & sum=2 & p2=0 -> (s'=0) & (p2'=1) & (sum'=0);
+
+	//sum = 3	
+	[c3] s=1 & sum=3 & p3=0 -> (s'=0) & (p3'=1) & (sum'=0);
+	[c12] s=1 & sum=3 & p1=0 & p2=0 -> (s'=0) & (p1'=1) & (p2'=1) & (sum'=0);
+	
+	//sum = 4
+	[c4] s=1 & sum=4 & p4=0 -> (s'=0) & (p4'=1) & (sum'=0);
+	[c13] s=1 & sum=4 & p1=0 & p3=0 -> (s'=0) & (p1'=1) & (p3'=1) & (sum'=0);
+	
+	//sum = 5
+	[c5] s=1 & sum=5 & p5=0 -> (s'=0) & (p5'=1) & (sum'=0);
+	[c14] s=1 & sum=5 & p1=0 & p4=0 -> (s'=0) & (p1'=1) & (p4'=1) & (sum'=0);
+	[c23] s=1 & sum=5 & p2=0 & p3=0 -> (s'=0) & (p2'=1) & (p3'=1) & (sum'=0);
+
+	//sum = 6
+	[c6] s=1 & sum=6 & p6=0 -> (s'=0) & (p6'=1) & (sum'=0);
+	[c15] s=1 & sum=6 & p1=0 & p5=0 -> (s'=0) & (p1'=1) & (p5'=1) & (sum'=0);
+	[c24] s=1 & sum=6 & p2=0 & p4=0 -> (s'=0) & (p2'=1) & (p4'=1) & (sum'=0);
+	[c123] s=1 & sum=6 & p1=0 & p2=0 & p3=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (sum'=0);
+	
+	//sum = 7
+	[c7] s=1 & sum=7 & p7=0 -> (s'=0) & (p7'=1) & (sum'=0);
+	[c25] s=1 & sum=7 & p2=0 & p5=0 -> (s'=0) & (p2'=1) & (p5'=1) & (sum'=0);
+	[c16] s=1 & sum=7 & p1=0 & p6=0 -> (s'=0) & (p1'=1) & (p6'=1) & (sum'=0);
+	[c34] s=1 & sum=7 & p3=0 & p4=0 -> (s'=0) & (p3'=1) & (p4'=1) & (sum'=0);
+	[c124] s=1 & sum=7 & p1=0 & p2=0 & p4=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p4'=1) 
+							& (sum'=0);
+	
+	//sum = 8
+	[c8] s=1 & sum=8 & p8=0 -> (s'=0) & (p8'=1) & (sum'=0);
+	[c26] s=1 & sum=8 & p2=0 & p6=0 -> (s'=0) & (p2'=1) & (p6'=1) & (sum'=0);
+	[c17] s=1 & sum=8 & p1=0 & p7=0 -> (s'=0) & (p1'=1) & (p7'=1) & (sum'=0);
+	[c35] s=1 & sum=8 & p3=0 & p5=0 -> (s'=0) & (p3'=1) & (p5'=1) & (sum'=0);
+	[c125] s=1 & sum=8 & p1=0 & p2=0 & p5=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c134] s=1 & sum=8 & p1=0 & p3=0 & p4=0 -> (s'=0)
+							& (p1'=1) 
+							& (p3'=1) 
+							& (p4'=1) 
+							& (sum'=0);
+	
+	//sum = 9
+	[c9] s=1 & sum=9 & p9=0 -> (s'=0) & (p9'=1) & (sum'=0);
+	[c18] s=1 & sum=9 & p1=0 & p8=0 -> (s'=0) & (p1'=1) & (p8'=1) & (sum'=0);
+	[c27] s=1 & sum=9 & p2=0 & p7=0 -> (s'=0) & (p2'=1) & (p7'=1) & (sum'=0);
+	[c36] s=1 & sum=9 & p3=0 & p6=0 -> (s'=0) & (p3'=1) & (p6'=1) & (sum'=0);
+	[c45] s=1 & sum=9 & p4=0 & p5=0 -> (s'=0) & (p4'=1) & (p5'=1) & (sum'=0);
+	[c126] s=1 & sum=9 & p1=0 & p2=0 & p6=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c135] s=1 & sum=9 & p1=0 & p3=0 & p5=0 -> (s'=0)
+							& (p1'=1) 
+							& (p3'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c234] s=1 & sum=9 & p2=0 & p3=0 & p4=0 -> (s'=0)
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p4'=1) 
+							& (sum'=0);
+																					
+	//sum = 10
+	[c19] s=1 & sum=10 & p1=0 & p9=0 -> (s'=0) & (p1'=1) & (p9'=1) & (sum'=0);
+	[c28] s=1 & sum=10 & p2=0 & p8=0 -> (s'=0) & (p2'=1) & (p8'=1) & (sum'=0);
+	[c37] s=1 & sum=10 & p3=0 & p7=0 -> (s'=0) & (p3'=1) & (p7'=1) & (sum'=0);
+	[c46] s=1 & sum=10 & p4=0 & p6=0 -> (s'=0) & (p4'=1) & (p6'=1) & (sum'=0);
+	[c235] s=1 & sum=10 & p2=0 & p3=0 & p5=0 -> (s'=0) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c127] s=1 & sum=10 & p1=0 & p2=0 & p7=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p7'=1) 
+							& (sum'=0);
+	[c136] s=1 & sum=10 & p1=0 & p3=0 & p6=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p3'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c145] s=1 & sum=10 & p1=0 & p4=0 & p5=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p4'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c1234] s=1 & sum=10 & p1=0 & p2=0 & p3=0 & p4=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p4'=1) 
+							& (sum'=0);
+	
+	//sum = 11
+	[c29] s=1 & sum=11 & p2=0 & p9=0 -> (s'=0) & (p2'=1) & (p9'=1) & (sum'=0);
+	[c38] s=1 & sum=11 & p3=0 & p8=0 -> (s'=0) & (p3'=1) & (p8'=1) & (sum'=0);
+	[c47] s=1 & sum=11 & p4=0 & p7=0 -> (s'=0) & (p4'=1) & (p7'=1) & (sum'=0);
+	[c56] s=1 & sum=11 & p5=0 & p6=0 -> (s'=0) & (p5'=1) & (p6'=1) & (sum'=0);
+	[c128] s=1 & sum=11 & p1=0 & p2=0 & p8=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p8'=1) 
+							& (sum'=0);
+	[c137] s=1 & sum=11 & p1=0 & p3=0 & p7=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p3'=1) 
+							& (p7'=1) 
+							& (sum'=0);
+	[c146] s=1 & sum=11 & p1=0 & p4=0 & p6=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p4'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c236] s=1 & sum=11 & p2=0 & p3=0 & p6=0 -> (s'=0) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c245] s=1 & sum=11 & p2=0 & p4=0 & p5=0 -> (s'=0) 
+							& (p2'=1) 
+							& (p4'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c1235] s=1 & sum=11 & p1=0 & p2=0 & p3=0 & p5=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+							
+	//sum = 12						
+	[c39] s=1 & sum=12 & p3=0 & p9=0 -> (s'=0) & (p3'=1) & (p9'=1) & (sum'=0);
+	[c48] s=1 & sum=12 & p4=0 & p8=0 -> (s'=0) & (p4'=1) & (p8'=1) & (sum'=0);
+	[c57] s=1 & sum=12 & p5=0 & p7=0 -> (s'=0) & (p5'=1) & (p7'=1) & (sum'=0);
+	[c129] s=1 & sum=12 & p1=0 & p2=0 & p9=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p9'=1) 
+							& (sum'=0);
+	[c138] s=1 & sum=12 & p1=0 & p3=0 & p8=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p3'=1) 
+							& (p8'=1) 
+							& (sum'=0);
+	[c147] s=1 & sum=12 & p1=0 & p4=0 & p7=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p4'=1) 
+							& (p7'=1) 
+							& (sum'=0);
+	[c156] s=1 & sum=12 & p1=0 & p5=0 & p6=0 -> (s'=0) 
+							& (p1'=1) 
+							& (p5'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c237] s=1 & sum=12 & p2=0 & p3=0 & p7=0 -> (s'=0) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p7'=1) 
+							& (sum'=0);
+	[c246] s=1 & sum=12 & p2=0 & p4=0 & p6=0 -> (s'=0) 
+							& (p2'=1) 
+							& (p4'=1)
+							& (p6'=1) 
+							& (sum'=0);
+	[c345] s=1 & sum=12 & p3=0 & p4=0 & p5=0 -> (s'=0) 
+							& (p3'=1) 
+							& (p4'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	[c1236] s=1 & sum=12 & p1=0 & p2=0 & p3=0 & p6=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p3'=1) 
+							& (p6'=1) 
+							& (sum'=0);
+	[c1245] s=1 & sum=12 & p1=0 & p2=0 & p4=0 & p5=0 -> (s'=0)
+							& (p1'=1) 
+							& (p2'=1) 
+							& (p4'=1) 
+							& (p5'=1) 
+							& (sum'=0);
+	//lose cases
+	// The idea is; if in any dice roll case one of the pieces is turned then
+	// the sum cannot be made
+	
+	// sum = 1
+	[end] s=1 & sum=1 & p1=1 -> (s'=2) & (sum'=0);
+	
+	//sum = 2
+	[end] s=1 & sum=2 & p2=1 -> (s'=2) & (sum'=0);
+
+	//sum = 3	
+	[end] s=1 & sum=3 
+			& p3=1
+			& (p1=1 | p2=1) -> (s'=2) & (sum'=0);
+	
+	//sum = 4
+	[end] s=1 & sum=4 
+			& p4=1
+ 			& (p1=1 | p3=1) -> (s'=2) & (sum'=0);
+	
+	//sum = 5
+	[end] s=1 & sum=5 
+			& p5=1
+	 		& (p1=1 | p4=1)
+			& (p2=1 | p3=1) -> (s'=2) & (sum'=0);
+	
+	//sum = 6
+	[end] s=1 & sum=6 
+			& p6=1
+			& (p1=1 | p5=1)
+			& (p2=1 | p4=1) 
+			& (p1=1 | p2=1 | p3=1) -> (s'=2)
+							& (sum'=0);
+	
+	//sum = 7
+	[end] s=1 & sum=7 
+			& p7=1
+			& (p2=1 | p5=1)
+			& (p1=1 | p6=1) 
+			& (p3=1 | p4=1) 
+			& (p1=1 | p2=1 | p4=1) -> (s'=2)
+							& (sum'=0);
+	
+	//sum = 8
+	[end] s=1 & sum=8 
+			& p8=1
+			& (p2=1 | p6=1) 
+			& (p1=1 | p7=1)
+			& (p3=1 | p5=1) 
+			& (p1=1 | p2=1 | p5=1)
+			& (p1=1 | p3=1 | p4=1) -> (s'=2)
+							& (sum'=0);
+	
+	//sum = 9
+	[end] s=1 & sum=9 
+			& p9=1
+			& (p1=1 | p8=1)
+			& (p2=1 | p7=1)
+			& (p3=1 | p6=1)
+			& (p4=1 | p5=1)
+			& (p1=1 | p2=1 | p6=1)
+			& (p1=1 | p3=1 | p5=1)
+			& (p2=1 | p3=1 | p4=1) -> (s'=2) 
+							& (sum'=0); 
+	
+	//sum = 10
+	[end] s=1 & sum=10 
+			& (p1=1 | p9=1)
+			& (p2=1 | p8=1)
+			& (p3=1 | p7=1)	
+			& (p4=1 | p6=1)	
+			& (p2=1 | p3=1 | p5=1)
+			& (p1=1 | p2=1 | p7=1)
+			& (p1=1 | p3=1 | p6=1)
+			& (p1=1 | p4=1 | p5=1)
+			& (p1=1 | p2=1 | p3=1 | p4=1) -> (s'=2) 
+							& (sum'=0);
+	
+	//sum = 11
+	[end] s=1 & sum=11 
+			& (p2=1 | p9=1)
+			& (p3=1 | p8=1)
+			& (p4=1 | p7=1)
+			& (p5=1 | p6=1)
+			& (p1=1 | p2=1 | p8=1)
+			& (p1=1 | p3=1 | p7=1)
+			& (p1=1 | p4=1 | p6=1)
+			& (p2=1 | p3=1 | p6=1)
+			& (p2=1 | p4=1 | p5=1)
+			& (p1=1 | p2=1 | p3=1 | p5=1) -> (s'=2)
+							& (sum'=0);
+	
+	//sum = 12
+	[end] s=1 & sum=12 
+			& (p3=1 | p9=1)
+			& (p4=1 | p8=1)
+			& (p5=1 | p7=1)
+			& (p1=1 | p2=1 | p9=1)
+			& (p1=1 | p3=1 | p8=1)
+			& (p1=1 | p4=1 | p7=1)
+			& (p1=1 | p5=1 | p6=1)
+			& (p2=1 | p3=1 | p7=1)
+			& (p2=1 | p4=1 | p6=1)
+			& (p3=1 | p4=1 | p5=1)
+			& (p1=1 | p2=1 | p3=1 | p6=1)
+			& (p1=1 | p2=1 | p4=1 | p5=1) -> (s'=2) 
+							& (sum'=0);
+	
+	//win case
+	[end] s=0  
+		& p1=1
+		& p2=1 
+		& p3=1 
+		& p4=1 
+		& p5=1
+		& p6=1
+		& p7=1
+		& p8=1
+		& p9=1 -> (s'=2);
+	
+	//final case
+	[end] s=2 -> (s'= 2);
+			
+endmodule
+
+rewards
+	[end] p1=0 : 1;
+	[end] p2=0 : 2;
+	[end] p3=0 : 3;
+	[end] p4=0 : 4;
+	[end] p5=0 : 5;
+	[end] p6=0 : 6;
+	[end] p7=0 : 7;
+	[end] p8=0 : 8;
+	[end] p9=0 : 9;
+endrewards
+
+// P.S In order to verify the combinations I found code that I can
+// link the source of due to plagiarism policy 
+//( I can also write a new one, but it basically check for all unique combiantions from a set of numbers for a given sum). Was thinking of writing 
+//it but decided 
+//to check if there is something so as to not waste time.
