@@ -3,7 +3,7 @@
 
 // Model for Shut the Box game
 
-dtmc
+mdp
 
 module M
 
