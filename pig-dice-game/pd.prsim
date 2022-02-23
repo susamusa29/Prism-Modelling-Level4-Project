@@ -1,0 +1,73 @@
+// Model for Pig Dice game
+// This is a turn-based game for 2 players
+// The player throws two dice. In a turn the player can either stop or throw the dice again.
+// if the dice throw is 1 and sth else then the player loses all points in that turn and the turn ends
+// if the dice throw is 1 and 1 all points accumulated until that turn are lost and the turn ends
+// The other player then can do the same
+// The game ends when one of the player accumulates 100 points.
+
+smg
+
+module player1 // two separate models per player
+    // I wrote down when you said we need only three variables sum player 1 and player 2. I believe we have two sums,
+    // 1 that is the sum per turn and one that is the total_sum, also the sum of the dice throw. If we constantly add
+    // the sum for the dice throw into the total sum. How do we then remove sum that is thrown only during the turn
+    // if a single one is thrown.
+
+    // variable state, either the player throws add sum and goes back to state 0 to decide
+    // whether to stop or throw again
+    s : [0..1] init 0;
+
+    // the sum that has been thrown
+    // sum : [0..12] init 0;
+    d1 : [0..6]
+    d2 : [0..6]
+
+    // total sum that has been accumulated by player 1
+    total_sum : [0..200] init 0; //some random nubmer bigger than 100
+    turn_sum: [0..200] init 0; //some random nubmer bigger than 100 in case 100 is reached in a single turn
+
+    // values to acknowledge turn of that player, since the player1 starts then turn1 is 1 initially
+    turn1 : [0..1] init 1;
+    turn2 : [0..1] init 0;
+
+    // probability for throwing a sum in 2 dice or ending turn
+    // switching the probabilities to reflect when the sum holds a 1, if the sum holds a ome it can just be 0, as it
+    // means no points will be added to the total sum
+//    [two] s=0 -> 1/36 : (s'=1) & (sum'=2) // 1 and 1
+//                        + 2/36 : (s'=1) & (sum'=3) // 1 and 2 or 2 and 1
+//                        + 3/36 : (s'=1) & (sum'=4) // 1 and 3 or 3 and 1 or 2 and 2
+//                        + 4/36 : (s'=1) & (sum'=5) // 1 and 4 or 4 and 1 or 2 and 3 or 3 and 2
+//                        + 5/36 : (s'=1) & (sum'=6) // 1 and 5 or 2 and 4 or 3 and 3 or 4 and 2 or 5 and 1
+//                        + 6/36 : (s'=1) & (sum'=7) // 1 and 6 or 2 and 5 or 3 and 4 or 4 and 3 or 5 and 2 or 6 and 1
+//                        + 5/36 : (s'=1) & (sum'=8) // 2 and 6 or 3 and 5 or 4 and 4 or 5 and 3 or 6 and 2
+//                        + 4/36 : (s'=1) & (sum'=9) // 3 and 6 or 4 and 5 or 5 and 4 or 6 and 3
+//                        + 3/36 : (s'=1) & (sum'=10) // 4 and 6 or 5 and 5 or 6 and 4
+//                        + 2/36 : (s'=1) & (sum'=11) //  5 and 6 or 6 and 5
+//                        + 1/36 : (s'=1) & (sum'=12); // 6 and 6
+// maybe better to have a variable ones .... to acknowlege if ones are present or not.
+    [two] s=0 -> 1/36 : (s'=1) & (d1'=1) & (d2'=1) // 1 and 1
+                        + 10/36 : (s'=1) & (
+                                            ((d1'=1) & (d2'=2))
+                                            | ((d1'=2) & (d2'=1))
+                                            | ((d1'=1) & (d2'=3))
+                                            | ((d1'=3) & (d2'=1))
+                                            | ((d1'=1) & (d2'=4))
+                                            | ((d1'=4) & (d2'=1))
+                                            | ((d1'=1) & (d2'=5))
+                                            | ((d1'=5) & (d2'=1))
+                                            | ((d1'=1) & (d2'=6))
+                                            | ((d1'=6) & (d2'=1))
+                                           )// 1 and 2 or 2 and 1
+                        // maybe combine all ones
+    [endturn1] s=0 & turn1=1 & total_sum<100-> turn2'=1 & c'=0 // giving the turn to
+                                                               // player 2; c can be the state variable for the
+                                                // second module.
+    s=1 & sum=2 & turn1=1 -> total_sum'=0 & turn1'=0 & turn2'=1 // if player1 throws a sum 2 then 2 1s were thrown so
+                                                                // all points so far are lost and turn ends
+    s=1 & sum=3 & turn1=1 -> turn1'=0 & turn2'=1 // the turn ends, the sum stays the same
+
+
+
+
+endmodule
