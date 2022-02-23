@@ -13,3 +13,6 @@ Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7
 // if you fix a strategy you can use this to get the probably distribution over all possible scores
 Pmax=? [ F ((1-p1)*1+(1-p2)*2+(1-p3)*3+(1-p4)*4+(1-p4)*4+(1-p5)*5+(1-p6)*6+(1-p7)*7+(1-p8)*8+(1-p9)*9)=k ]
 
+// print the probability in each state
+filter(print, Rmin=?[F s=2],true)
+
