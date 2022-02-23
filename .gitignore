@@ -2,3 +2,4 @@ sta_[12]d\.txt
 sta_[0-9]*c[0-9]*\.txt
 .ipynb_checkpoints/
 .vscode
+.idea
