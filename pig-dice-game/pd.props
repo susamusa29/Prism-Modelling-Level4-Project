@@ -1,0 +1,5 @@
+// maximum probability of player 1 winning
+<<player1>> Pmax=? [ F (turn=3 & winner=1) ]
+
+// maximum probability of player 2 winning
+<<player2>> Pmax=? [ F (turn=3 & winner=2) ]
