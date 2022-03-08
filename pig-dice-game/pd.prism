@@ -6,6 +6,10 @@
 // The other player then can do the same
 // The game ends when one of the player accumulates 100 points.
 
+// As the game has 2,820,954 it is too big to build without additional settings. However, it is even harder to analyse
+// therefore tha analysis will consider a subset of the game and apply that to a bigger set to refine results, leading
+// leading up to the full set of the game. First, a winner will be considered by accumulating 25 points, then 50
+// and then finally a 100.
 smg
 
 player player1
@@ -49,7 +53,8 @@ module pdg // module for pig dice game
                         + 2/36 : (tscore1'=min(tscore1+11, 100)) //  5 and 6 or 6 and 5
                         + 1/36 : (tscore1'=min(tscore1+12, 100)); // 6 and 6
 
-	[notthrow1] turn=1 & score1+tscore1>=100 -> (turn'=3) & (winner'=1);
+	[notthrow1] turn=1 & score1+tscore1>=100 -> (turn'=3) & (winner'=1) & (score1'=0) & (tscore1'=0) & (score2'=0)
+	                                                                    & (tscore2'=0);
 	[notthrow1] turn=1 & score1+tscore1<100 -> (turn'=2) & (score1'=score1+tscore1) & (tscore1'=0);
 
 	// player 2
@@ -69,7 +74,8 @@ module pdg // module for pig dice game
                         + 2/36 : (tscore2'=min(tscore2+11, 100)) //  5 and 6 or 6 and 5
                         + 1/36 : (tscore2'=min(tscore2+12, 100)); // 6 and 6
 
-    [notthrow2] turn=2 & score2+tscore2>=100 -> (turn'=3) & (winner'=2);
+    [notthrow2] turn=2 & score2+tscore2>=100 -> (turn'=3) & (winner'=2)& (score1'=0) & (tscore1'=0) & (score2'=0)
+	                                                                   & (tscore2'=0);
 	[notthrow2] turn=2 & score2+tscore2<100 -> (turn'=1) & (score2'=score2+tscore2) & (tscore2'=0);
 
 endmodule
