@@ -1,0 +1,64 @@
+PRISM-games
+===========
+
+Version: 3.1.dev (based on PRISM 4.7.dev)
+Date: Thu Mar 10 11:54:20 GMT 2022
+Hostname: glaroam2-149-59.wireless.gla.ac.uk
+Memory limits: cudd=1g, java(heap)=10g
+Command line: prism-games pd.prism pd.props -prop 1 -const win_score=50 -javamaxmem 10g -exportstates pd_ws50.sta -exportadv ps_ws50.tra
+
+Parsing model file "pd.prism"...
+
+Type:        SMG
+Modules:     pdg
+Variables:   turn score1 score2 tscore1 tscore2 winner
+
+Switching to explicit engine, which supports SMGs...
+
+Parsing properties file "pd.props"...
+
+2 properties:
+(1) <<player1>>Pmax=? [ F (turn=3&winner=1) ]
+(2) <<player2>>Pmax=? [ F (turn=3&winner=2) ]
+
+Building model...
+Model constants: win_score=50
+
+Computing reachable states... 157769 212066 states
+Reachable states exploration and model construction done in 3.98 secs.
+Sorting reachable states list...
+
+Time for model construction: 4.392 seconds.
+
+Warning: Deadlocks detected and fixed in 2 states
+
+Type:        SMG
+States:      212066 (1 initial)
+Transitions: 2239834
+Choices:     424130
+Max/avg:     2/2.00
+
+Exporting list of reachable states in plain text format to file "pd_ws50.sta"...
+
+---------------------------------------------------------------------
+
+Model checking: <<player1>>Pmax=? [ F (turn=3&winner=1) ]
+Model constants: win_score=50
+
+Starting probabilistic reachability...
+Starting Prob0 (maxmin)...
+Prob0 (maxmin) took 8 iterations and 0.682 seconds.
+target=1, yes=1, no=59221, maybe=152844
+Starting value iteration (maxmin)...
+Value iteration (maxmin) took 166 iterations and 11.825 seconds.
+Probabilistic reachability took 12.641 seconds.
+
+Value in the initial state: 0.5375544256243341
+
+Time for model checking: 12.695 seconds.
+
+Result: 0.5375544256243341 (+/- 5.096394097360213E-6 estimated; rel err 9.480703449592265E-6)
+
+---------------------------------------------------------------------
+
+Note: There was 1 warning during computation.

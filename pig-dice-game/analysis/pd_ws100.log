@@ -1,0 +1,64 @@
+PRISM-games
+===========
+
+Version: 3.1.dev (based on PRISM 4.7.dev)
+Date: Thu Mar 10 11:58:00 GMT 2022
+Hostname: glaroam2-149-59.wireless.gla.ac.uk
+Memory limits: cudd=1g, java(heap)=10g
+Command line: prism-games pd.prism pd.props -prop 1 -const win_score=100 -javamaxmem 10g -exportstates pd_ws100.sta -exportadv pd_ws100.tra
+
+Parsing model file "pd.prism"...
+
+Type:        SMG
+Modules:     pdg
+Variables:   turn score1 score2 tscore1 tscore2 winner
+
+Switching to explicit engine, which supports SMGs...
+
+Parsing properties file "pd.props"...
+
+2 properties:
+(1) <<player1>>Pmax=? [ F (turn=3&winner=1) ]
+(2) <<player2>>Pmax=? [ F (turn=3&winner=2) ]
+
+Building model...
+Model constants: win_score=100
+
+Computing reachable states... 172228 347238 518416 721971 906571 1104790 1302925 1506086 1713995 1844166 states
+Reachable states exploration and model construction done in 29.118 secs.
+Sorting reachable states list...
+
+Time for model construction: 32.898 seconds.
+
+Warning: Deadlocks detected and fixed in 2 states
+
+Type:        SMG
+States:      1844166 (1 initial)
+Transitions: 20831334
+Choices:     3688330
+Max/avg:     2/2.00
+
+Exporting list of reachable states in plain text format to file "pd_ws100.sta"...
+
+---------------------------------------------------------------------
+
+Model checking: <<player1>>Pmax=? [ F (turn=3&winner=1) ]
+Model constants: win_score=100
+
+Starting probabilistic reachability...
+Starting Prob0 (maxmin)...
+Prob0 (maxmin) took 12 iterations and 8.198 seconds.
+target=1, yes=1, no=488396, maybe=1355769
+Starting value iteration (maxmin)...
+Value iteration (maxmin) took 290 iterations and 175.236 seconds.
+Probabilistic reachability took 184.151 seconds.
+
+Value in the initial state: 0.5195484645702458
+
+Time for model checking: 184.295 seconds.
+
+Result: 0.5195484645702458 (+/- 5.119494252598493E-6 estimated; rel err 9.853737623559677E-6)
+
+---------------------------------------------------------------------
+
+Note: There was 1 warning during computation.
