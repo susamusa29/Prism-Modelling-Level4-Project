@@ -7,15 +7,7 @@
 // The game ends when one of the player accumulates win_score points.
 
 // This is the startegy for playing the game
-smg
-
-player player1
-    [throw1], [notthrow1]
-endplayer
-
-player player2
-    [throw2], [notthrow2]
-endplayer
+mdp
 
 const win_score;
 const lower_limit; // should be -72
