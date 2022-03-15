@@ -18,9 +18,9 @@ player player2
 endplayer
 
 const win_score;
-const lower_limit // should be -72
-const upper_limit // should be 74
-const throw_safe_score // should be 19
+const lower_limit; // should be -72
+const upper_limit; // should be 74
+const throw_safe_score; // should be 19
 
 module pdg // module for pig dice game
     // @turn - flag to mark turn of player 1 and 2
