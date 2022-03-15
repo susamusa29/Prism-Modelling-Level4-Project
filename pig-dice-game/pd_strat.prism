@@ -18,6 +18,9 @@ player player2
 endplayer
 
 const win_score;
+const lower_limit // should be -72
+const upper_limit // should be 74
+const throw_safe_score // should be 19
 
 module pdg // module for pig dice game
     // @turn - flag to mark turn of player 1 and 2
@@ -38,10 +41,10 @@ module pdg // module for pig dice game
 	// player 1 ; try to combine throw to win or safe throw
 	// ========= new bit starts here ====
     [throw1] turn=1 & (
-        (score2 - score1 <= -72 & tscore1 < 100 - score1) |   //for differences smalller than -60, player 1 having more
+        (score2 - score1 <= lower_limit & tscore1 < 100 - score1) |   //for differences smalller than -60, player 1 having more
                                                               //points
-        (score2 - score1 >= 74 & tscore1 < 100 - score1)  |    //for differences greater than 60, player 2 leading
-        (score2 - score1 < 74 & score2 - score1 > -72  & tscore1 < 19)   //average found
+        (score2 - score1 >= upper_limit & tscore1 < 100 - score1)  |    //for differences greater than 60, player 2 leading
+        (score2 - score1 < upper_limit & score2 - score1 > lower_limit  & tscore1 < throw_safe_score)   //average found
         // ========= new bit ends here ====
          //throw to win -> remaining is 96
     ) -> 1/36 : (score1'=0) & (tscore1'=0) & (turn'=2) // 1 and 1
@@ -69,12 +72,7 @@ module pdg // module for pig dice game
 	                   & score1+tscore1<win_score -> (turn'=2) & (score1'=score1+tscore1) & (tscore1'=0);
 
 	// player 2
-	[throw2] turn=2 &
-	(
-	    (score2 - score1 <= -72 & tscore2 < 100 - score2) |   //for differences smalller than -60, player 1 having more points
-        (score2 - score1 >= 74 & tscore2 < 100 - score2)  |   //for differences greater than 60, player 2 leading
-        (score2 - score1 < 74 & score2 - score1 > -72  & tscore2 < 19)   //average found
-    )    -> 1/36 : (score2'=0) & (tscore2'=0) & (turn'=1) // 1 and 1
+	[throw2] turn=2 -> 1/36 : (score2'=0) & (tscore2'=0) & (turn'=1) // 1 and 1
                         + 2/36 : (turn'=1) & (tscore2'=0) // 1 and 2 or 2 and 1
                         + 2/36 : (turn'=1) & (tscore2'=0) // 1 and 3 or 3 and 1
                         + 1/36 : (tscore2'=min(tscore2+4,win_score)) // 2 and 2
@@ -91,11 +89,6 @@ module pdg // module for pig dice game
                         + 1/36 : (tscore2'=min(tscore2+12, win_score)); // 6 and 6
 
     [notthrow2] turn=2 & score2+tscore2>=win_score -> (turn'=3) & (winner'=2) & (score1'=0) & (tscore1'=0) & (score2'=0) & (tscore2'=0);
-	[notthrow2] turn=2 &  (
-	                        (score2 - score1 <= -72 & tscore2 >= 100 - score2) |
-	                        (score2 - score1 >= 74 & tscore2 >= 100 - score2)  |
-	                        (score2 - score1 < 74 & score2 - score1 > -72  & tscore2 > 19)
-	                   )
-	                   & score2+tscore2<win_score -> (turn'=1) & (score2'=score2+tscore2) & (tscore2'=0);
+	[notthrow2] turn=2 & score2+tscore2<win_score -> (turn'=1) & (score2'=score2+tscore2) & (tscore2'=0);
 
 endmodule
