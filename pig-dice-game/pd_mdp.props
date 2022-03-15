@@ -1,0 +1,8 @@
+//minimum probability that player 1 wins
+Pmin=? [ F (turn=3 & winner=1) ]
+
+//maximum probability that player 1 wins
+Pmax=? [ F (turn=3 & winner=1) ]
+
+// check deadlock states
+filter(print, "deadlock")
