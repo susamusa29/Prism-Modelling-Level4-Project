@@ -7,7 +7,7 @@
 // The game ends when one of the player accumulates win_score points.
 
 // This is the startegy for playing the game
-smg
+mdp
 
 player player1
     [throw1], [notthrow1]
