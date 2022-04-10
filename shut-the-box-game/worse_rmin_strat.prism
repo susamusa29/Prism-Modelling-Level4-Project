@@ -1,20 +1,11 @@
-// This model is the strategy of Shut the box where
-// if 7, 8, 9 boxes are closed throw only a die
-// and until 7,8,9 boxes are closed throw 2 dice
-// in the moves try to cover first the smallest boxes and only
-// cover a higher one if no other choice is available. 
-// That should be a bad strategy as then you are left with mostly big numbers
-// whose overall minimal sum is going more towards  the maximum dice sum that can be achieved.
-// Therefore, that should lead to a greater sum overall.
-// Try to cover the maximum of small umbers per sum. Then more likely to hit 
-// a number that is actually covered.
-// order of cases is determined by looking at exports for the preferred action in a situation.
-// exports are done through filtering with numpy.
-
-// Improved strategy for sums 12 and 11 and 10 and 6. When covering 2 pieces aim for the largest of the two from the smaller
+// This model is the strategy of Shut the box which improves on the optimal found
+// Improved strategy for sums 12 and 11 and 10 and 6. When covering 2 pieces aim for
+// the largest of the two that lean towards the biggest numbers
 // piece in the combination
 
-// Model for Shut the Box game
+// Reward is approx. 12.0006
+
+// Strategy for Shut the Box game
 
 mdp
 
@@ -26,10 +17,6 @@ module M
     // ending the game
 
     s : [0..2] init 0;
-
-    //TODO: implement dice value ->
-    //possibly, throwing the die 
-    //: action
     
     sum : [0..12] init 0;
 
@@ -678,10 +665,3 @@ rewards
 	[end] p8=0 : 8;
 	[end] p9=0 : 9;
 endrewards
-
-// P.S In order to verify the combinations I found code that I can
-// link the source of due to plagiarism policy 
-//( I can also write a new one, but it basically check for all unique combiantions from a set of numbers for a given sum). Was thinking of writing 
-//it but decided 
-//to check if there is something so as to not waste time.
-// reward is 12. 0005 .... 

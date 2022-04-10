@@ -1,18 +1,10 @@
-// This model is the strategy of Shut the box where
-// if 7, 8, 9 boxes are closed throw only a die
-// and until 7,8,9 boxes are closed throw 2 dice
-// in the moves try to cover first the smallest boxes and only
-// cover a higher one if no other choice is available. 
-// That should be a bad strategy as then you are left with mostly big numbers
-// whose overall minimal sum is going more towards  the maximum dice sum that can be achieved.
-// Therefore, that should lead to a greater sum overall.
-// Try to cover the maximum of small umbers per sum. Then more likely to hit 
-// a number that is actually covered.
-// order of cases is determined by looking at exports for the preferred action in a situation.
-// exports are done through filtering with numpy.
+// This model is the strategy of Shut the box which improves on the optimal found
+// Improved strategy for all sums. If the sum is >= 8 then choose actions that lean
+// towards the middle instead of towards the right for combinations of 2 pieces. 
+// if the sum is lesst that 7 choose combinations that lead towards the right instead of 
+// towards the middle.
 
-// Improved strategy for sums 12 and 11 and 10 and 6. When covering 2 pieces aim for the largest of the two from the smaller
-// piece in the combination
+// Result is approx.12.0593
 
 // Model for Shut the Box game
 
@@ -27,10 +19,6 @@ module M
 
     s : [0..2] init 0;
 
-    //TODO: implement dice value ->
-    //possibly, throwing the die 
-    //: action
-    
     sum : [0..12] init 0;
 
     // definition of box pieces:

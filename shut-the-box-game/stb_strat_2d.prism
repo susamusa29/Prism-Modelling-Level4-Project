@@ -1,15 +1,14 @@
 // This model is the strategy of Shut the box where
-// if 7, 8, 9 boxes are closed throw only a die
-// and until 7,8,9 boxes are closed throw 2 dice
-// in the moves try to cover first the smallest boxes and only
-// cover a higher one if no other choice is available. 
-// That should be a bad strategy as then you are left with mostly big numbers
-// whose overall minimal sum is going more towards  the maximum dice sum that can be achieved.
+// if 5, 6, 7, 8, 9 boxes are closed throw only a die
+// and until 5, 6, 7, 8, 9 boxes are closed throw 2 dice
+// in the moves try to cover first the highest boxes and only
+// cover a small one if no other choice is available.
+// That should be a good strategy as then you are left with mostly low numbers
+// whose overall minimal sum is going more towards  the minimum dice sum that can be achieved.
 // Therefore, that should lead to a greater sum overall.
-// Try to cover the maximum of small umbers per sum. Then more likely to hit 
-// a number that is actually covered.
-// order of cases is determined by looking at exports for the preferred action in a situation.
-// exports are done through filtering with numpy.
+// Try to cover the maximum of big numbers per sum. Then until we hit a number that is actually covered
+// the sum will be smaller.
+// the two dice and one die condition are determined from an output of a jupyter notebook analysis file Data_analysis
 
 // Model for Shut the Box game
 
@@ -23,10 +22,6 @@ module M
     // ending the game
 
     s : [0..2] init 0;
-
-    //TODO: implement dice value ->
-    //possibly, throwing the die 
-    //: action
     
     sum : [0..12] init 0;
 
