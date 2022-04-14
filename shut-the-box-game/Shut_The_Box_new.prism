@@ -10,11 +10,6 @@ module M
     // ending the game
 
     s : [0..2] init 0;
-
-    //TODO: implement dice value ->
-    //possibly, throwing the die 
-    //: action
-    
     sum : [0..12] init 0;
 
     // definition of box pieces:
@@ -386,9 +381,3 @@ rewards
 	[end] p8=0 : 8;
 	[end] p9=0 : 9;
 endrewards
-
-// P.S In order to verify the combinations I found code that I can
-// link the source of due to plagiarism policy 
-//( I can also write a new one, but it basically check for all unique combiantions from a set of numbers for a given sum). Was thinking of writing 
-//it but decided 
-//to check if there is something so as to not waste time.

@@ -80,7 +80,7 @@ module M
 	
 	//sum = 5
     [c5] s=1 & sum=5 
-                    & p5=0 -> (s'=0) & (p5'=1) & (sum'=0); //close only if the other choices are not  available.
+                    & p5=0 -> (s'=0) & (p5'=1) & (sum'=0);
     [c23] s=1 & sum=5
                     & p5=1 
                     & p2=0 & p3=0 -> (s'=0) & (p2'=1) & (p3'=1) & (sum'=0);

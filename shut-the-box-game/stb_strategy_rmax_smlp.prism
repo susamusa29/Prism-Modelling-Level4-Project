@@ -23,11 +23,6 @@ module M
     // ending the game
 
     s : [0..2] init 0;
-
-    //TODO: implement dice value ->
-    //possibly, throwing the die 
-    //: action
-    
     sum : [0..12] init 0;
 
     // definition of box pieces:
