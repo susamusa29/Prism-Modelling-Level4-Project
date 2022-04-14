@@ -1,69 +1,190 @@
 # PRISM Modelling - Level 4 Project
 
-The project is about modelling games using the PRISM Language  and PRISM games. More information can be found at: https://www.prismmodelchecker.org/
+The research project is about applying probabilistic verification to analyse dice game. 
+We use probabilistic verification tools PRISM and PRISM games. This readme explains commands
+in both tools that are used throughout this research.
+More information can be found at: [PRISM Model Checker](https://www.prismmodelchecker.org/).
 
-## Getting started
+# PRISM
+PRISM is a probabilistic model checker that enables verification of probabilistic systems. You can
+build your models in any editor and then load them on PRISM. You can also build your models on 
+PRISM itself. PRISM also supports properties. Property files can again be build on PRISM GUI or with
+an editor of choice and then just load the file directly on PRISM.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### Prerequisites
+1. This research was conducted with a Linux distribution, Ubuntu Operating System: **Ubuntu 20.04.4 LTS**.
+These are not strong prerequisites as PRISM is supported for  Linux, Windows and Mac OS X, both 64-bit and 32-bit versions. 
+Wherever a specific Linux command is used, that will be denoted with: <cmd_command> _(Linux specific)_.
+2. Editor: **PyCharm 2022.1 (Professional Edition)** ; 
+3. Recommended Editor: **Visual Studio Code** as it supports Prism plugin PRISM-language v0.0.1 that offers
+simple highlighting for PRISM language.
+4. **PRISM v. 4.7**
 
-## Add your files
+### Getting started
+If you do not have PRISM already installed on your personal machine. Follow the guidance on 
+[Installing PRISM Instructions](https://www.prismmodelchecker.org/manual/InstallingPRISM/Instructions).
+
+### Running PRISM GUI and PRISM Command Line Interface (CLI)
+_(Linux specific)_
+To run PRISM, execute either the xprism or prism script 
+(for the graphical user interface or command-line version, respectively). These can be found in 
+the bin directory. These scripts are designed to be run from anywhere and you can easily create 
+symbolic links or aliases to them. If you want icons to create desktop shortcuts to PRISM, 
+you can find some in the etc directory.  (from [Installing PRISM Instructions](https://www.prismmodelchecker.org/manual/InstallingPRISM/Instructions))
+
+_(Linux specific)_
+You can also create an alias for PRISM GUI and PRISM CLI of **xprism** and **prism**, respectively.
+If on run the PRISM GUI, assuming a Linux distribution, open the 'Terminal' and type: `xprism`.
+
+Navigate to your Home directory and create a file: **.bash_aliases**. Into the file put the following lines:
+
+```shell
+# ======================
+# Prism aliases
+alias prism='~/prism-4.7-linux64/bin/prism'
+alias xprism='~/prism-4.7-linux64/bin/xprism'
+# ======================
+```
+
+Now you can start PRSIM GUI and PRISM CLI with commands:
+
+For PRISM GUI:
+```shell
+xprism
+```
+For PRISM CLI:
+```shell
+prism
+```
+To see help type:
+```shell
+prism - help
+```
+
+For another OS refer to:  [Installing PRISM Instructions](https://www.prismmodelchecker.org/manual/InstallingPRISM/Instructions)
+
+The commands later on assume an alias has been made. If you decided to not do that you can just 
+replace **prism** or **xprism** with relevant running command.
+
+### PRISM Files
+#### PRISM Model Files
+PRISM offers a variety of different file extensions for PRISm models. More information can be found at: 
+[PRISM Model Files](https://www.prismmodelchecker.org/manual/ThePRISMLanguage/PRISMModelFiles). The
+recommended extension that is also used throughout this project is: **.prism**.
+
+### PRISM Property Files
+Property Files use the recommended extension: **.props**. More information can be found at:
+[PRISM Property Files](https://www.prismmodelchecker.org/manual/PropertySpecification/PropertiesFiles)
+#### How to load models from the PRISM GUI
+In order to load a model file in the PRISM GUI select: Model/Open Model... and then navigate to your chosen file.
+
+For example, to open the model for Shut the Box game select: Model/Open Model... and navigate to where
+file **Shut_The_Box_new.prism** is located.
+### How to load properties from the PRISM GUI
+In order to load a property file in the PRISM GUI select: Properties/Open properties list... and then navigate to 
+your chosen property file.
+
+For example, to open the properties file for Shut the Box game select: select: Properties/Open properties list... and navigate to where
+file **Shut_The_Box.props** is located.
+### How to run experiments in the PRISM GUI
+In order to verify a property, after loading the model and property files, is done in **three** steps:
+1. Select the property you wish to verify
+2. Right Click on Mouse
+3. Select 'New Experiments'
+
+Note: experiments produce graphs that can be exported by: Right Click on Mouse + 'Export Graph' 
+### How to verify a property
+In order to verify a property, after loading the model and property files, is done in **three** steps:
+1. Select the property you wish to verify
+2. Right Click on Mouse
+3. Select 'Verify'
+
+### How to generate states (.sta) and transition (.tra) files from the PRISM command line interface
+To generate and optimal straty (tra file) and states file you can run:
+
+```shell
+prism -dir #directory-where-files-are-located# #model name# #property file# -prop #property number# -s -exportadvmdp #name#.tra -exportstates #name#.sta
+```
 
 
-## Integrate with your tools
+To run properties against an optimal strategy you can use the followng two commands:
+```shell
+prism -dir #directory-where-files-are-located# #model name# #property file# -prop #property number# -s -exportadvmdp tmp.tra -exportstates tmp.sta -exportlabels tmp.lab
+```
+```shell
+prism -dir #directory-where-files-are-located# -mdp -importtrans tmp.tra -importstates tmp.sta -importlabels tmp.lab #property file and parmeters#
+```
+
+For more information on PRISM refer to: [PRISM Documentaiton](https://www.prismmodelchecker.org/doc/).
+# PRISM-games
+PRISM-games is an extension to PRISM that allows for modelling stochastic multiplayer games. In this
+research it is used to model the 2-player turn based game: Pig Dice. For more information visit:
+[PRISM-games](https://www.prismmodelchecker.org/games/)
+
+**Note:** Commands that are omitted follow the same pattern as for PRISM.
+### Prerequisites
+1. This research was conducted with a Linux distribution, Ubuntu Operating System: **Ubuntu 20.04.4 LTS**.
+These are not strong prerequisites as PRISM is supported for  Linux, Windows and Mac OS X, both 64-bit and 32-bit versions. 
+Wherever a specific Linux command is used, that will be denoted with: <cmd_command> _(Linux specific)_.
+2. Editor: **PyCharm 2022.1 (Professional Edition)** ; 
+3. Recommended Editor: **Visual Studio Code** as it supports Prism plugin PRISM-language v0.0.1 that offers
+simple highlighting for PRISM language.
+4. **PRISM-games v. 3.0**
+
+### Getting started
+If you do not have PRISM-games already installed on your personal machine. Follow the guidance on 
+[PRISM-games](https://www.prismmodelchecker.org/games/installation.php).
+
+### Running PRISM-games 
+_(Linux specific)_
+Run bin/xprism for the GUI or bin/prism for the command-line version.
+(from [PRISM-games: Installation](https://www.prismmodelchecker.org/games/installation.php))
+
+_(Linux specific)_
+You can also create an alias for PRISM-games GUI and PRISM-games CLI of **xprism-games** and **prism-games**, respectively.
+
+Navigate to your Home directory and create a file: **.bash_aliases** if you do not have one already. Into the file put the following lines:
+
+```shell
+# ======================
+# Prism aliases
+alias prism-games='~/prism-games-3.0-linux64/bin/prism'
+alias xprism-games='~/prism-games-3.0-linux64/bin/xprism'
+# ======================
+```
+
+Now you can start PRSIM GUI and PRISM CLI with commands:
+
+For PRISM GUI:
+```shell
+xprism-games
+```
+For PRISM CLI:
+```shell
+prism-games
+```
+To see help type:
+```shell
+prism-games -help
+```
+
+For another OS refer to: [PRISM-games: Installation](https://www.prismmodelchecker.org/games/installation.php)
+
+The commands later on assume an alias has been made. If you decided to not do that you can just 
+replace **prism-games** or **xprism-games** with relevant running command.
 
 
-## Collaborate with your team
+### How to generate states (.sta) and transition (.tra) files from the PRISM command line interface
+To generate and optimal straty (tra file) and states file you can run:
+```shell
+prism-games -javamaxmem #memory size# <path-to-model>/#model name# <path-to-props>/#property filename# -prop #property number# -const #constant name and value# -s -exportadvmdp <path-to-export>/#filename#.tra  -exportstates <path-to-export>/#filename#.sta
+```
 
+For example for Pig Dice the command will look like the following:
+```shell
+prism-games -javamaxmem #memory size# <path-to-project>/prism-modelling-l4/pig-dice-game/pd.prism <path-to-project>/prism-modelling-l4/pig-dice-game/pd.props -prop 1 -const win_score=25 -s -exportadvmdp <path-to-project>/prism-modelling-l4/pig-dice-game/analysis/pd.tra  -exportstates <path-to-project>/prism-modelling-l4/pig-dice-game/analysis/pd.sta
+```
 
-## Test and Deploy
+For more information on PRISM-games refer to: [PRISM Documentaiton](https://www.prismmodelchecker.org/doc/).
 
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
