@@ -185,6 +185,6 @@ For example for Pig Dice the command will look like the following:
 prism-games -javamaxmem #memory size# <path-to-project>/prism-modelling-l4/pig-dice-game/pd.prism <path-to-project>/prism-modelling-l4/pig-dice-game/pd.props -prop 1 -const win_score=25 -s -exportadvmdp <path-to-project>/prism-modelling-l4/pig-dice-game/analysis/pd.tra  -exportstates <path-to-project>/prism-modelling-l4/pig-dice-game/analysis/pd.sta
 ```
 
-For more information on PRISM-games refer to: [PRISM Documentaiton](https://www.prismmodelchecker.org/doc/).
+For more information on PRISM-games refer to: [PRISM-games Instructions](https://www.prismmodelchecker.org/games/instructions.php).
 
 
