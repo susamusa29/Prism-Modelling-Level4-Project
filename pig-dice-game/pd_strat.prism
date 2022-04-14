@@ -33,12 +33,10 @@ module pdg // module for pig dice game
 	// player 1 ; try to combine throw to win or safe throw
 	// ========= new bit starts here ====
     [throw1] turn=1 & (
-        (score2 - score1 <= lower_limit & tscore1 < 100 - score1) |   //for differences smalller than -60, player 1 having more
+        (score2 - score1 <= lower_limit & tscore1 < 100 - score1) |   //for differences smalller than -72, player 1 having more
                                                               //points
-        (score2 - score1 >= upper_limit & tscore1 < 100 - score1)  |    //for differences greater than 60, player 2 leading
+        (score2 - score1 >= upper_limit & tscore1 < 100 - score1)  |    //for differences greater than 74, player 2 leading
         (score2 - score1 < upper_limit & score2 - score1 > lower_limit  & tscore1 < throw_safe_score)   //average found
-        // ========= new bit ends here ====
-         //throw to win -> remaining is 96
     ) -> 1/36 : (score1'=0) & (tscore1'=0) & (turn'=2) // 1 and 1
                         + 2/36 : (turn'=2) & (tscore1'=0) // 1 and 2 or 2 and 1
                         + 2/36 : (turn'=2) & (tscore1'=0) // 1 and 3 or 3 and 1
