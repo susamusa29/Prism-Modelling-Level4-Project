@@ -55,9 +55,9 @@ module pdg // module for pig dice game
 
 	[notthrow1] turn=1 & score1+tscore1>=win_score -> (turn'=3) & (winner'=1) & (score1'=0) & (tscore1'=0) & (score2'=0) & (tscore2'=0);
 	[notthrow1] turn=1 &  (
-	                        (score2 - score1 <= -72 & tscore1 >= 100 - score1) |
-	                        (score2 - score1 >= 74 & tscore1 >= 100 - score1)  |
-	                        (score2 - score1 < 74 & score2 - score1 > -72  & tscore1 >= 19)
+	                        (score2 - score1 <= lower_limit & tscore1 >= 100 - score1) |
+	                        (score2 - score1 >= upper_limit & tscore1 >= 100 - score1)  |
+	                        (score2 - score1 < upper_limit & score2 - score1 > lower_limit  & tscore1 >= throw_safe_score)
 	                   )
 	                   & score1+tscore1<win_score -> (turn'=2) & (score1'=score1+tscore1) & (tscore1'=0);
 
