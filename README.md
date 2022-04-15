@@ -147,7 +147,7 @@ Navigate to your Home directory and create a file: **.bash_aliases** if you do n
 
 ```shell
 # ======================
-# Prism aliases
+# Prism-games aliases
 alias prism-games='~/prism-games-3.0-linux64/bin/prism'
 alias xprism-games='~/prism-games-3.0-linux64/bin/xprism'
 # ======================
